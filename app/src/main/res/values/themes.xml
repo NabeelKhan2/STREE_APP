@@ -14,4 +14,24 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/background</item>
     </style>
+
+    <style name="CustomDropDownTilStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">#9797A2</item>
+        <item name="hintTextColor">@color/foreground</item>
+        <item name="boxStrokeColor">@color/foreground</item>
+        <item name="colorControlNormal">@color/foreground</item>
+        <item name="colorControlActivated">@color/foreground</item>
+        <item name="colorControlHighlight">@color/foreground</item>
+        <item name="boxCornerRadiusBottomEnd">3dp</item>
+        <item name="boxCornerRadiusBottomStart">3dp</item>
+        <item name="boxCornerRadiusTopEnd">3dp</item>
+        <item name="boxCornerRadiusTopStart">3dp</item>
+    </style>
+
+    <style name="FloatingButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="colorSecondary">@color/foreground</item>
+        <item name="colorOnSecondary">@color/background</item>
+    </style>
 </resources>

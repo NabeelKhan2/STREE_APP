@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_5sdp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="#222f3e"
+        app:cardCornerRadius="@dimen/_2sdp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvGroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:paddingTop="@dimen/_8sdp"
+        android:text="@string/group_name"
+        android:textAllCaps="true"
+        android:textColor="@color/background"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_sms_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/sms_source"
+        android:textColor="@color/background"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivSms"
+        app:layout_constraintTop_toBottomOf="@+id/tvGroupName" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvChannelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:text="@string/sms_source"
+        android:textColor="@color/background"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/ivSms" />
+
+
+    <!--    <com.google.android.material.textview.MaterialTextView-->
+    <!--        android:id="@+id/tvSourceCount"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:textColor="@color/background"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:text="@string/source_number"-->
+    <!--        android:textSize="@dimen/_15ssp"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/tv_sms_source"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/tv_sms_source"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/tv_sms_source"/>-->
+
+    <ImageView
+        android:id="@+id/ivSms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sms"
+        app:layout_constraintBottom_toBottomOf="@id/tv_sms_source"
+        app:layout_constraintStart_toStartOf="@+id/tvGroupName"
+        app:layout_constraintTop_toTopOf="@id/tv_sms_source"
+        tools:ignore="ContentDescription" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.29" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

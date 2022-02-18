@@ -2,4 +2,17 @@
     <string name="app_name">STREE 2.0</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="group_name">Group name:</string>
+    <string name="sms_source">source:</string>
+    <string name="slack_setup">Slack Setup</string>
+    <string name="description">Please setup your slack account to send messages to slack channel via Slack API.</string>
+    <string name="enter_group_name">Enter Group Name</string>
+    <string name="sms_source_">SMS Source:</string>
+    <string name="enter_source_number">Enter source number</string>
+    <string name="create_new_group">Create New Group</string>
+    <string name="your_slack_channel">Your Slack Channel:</string>
+    <string name="slack_channel">Slack Channel</string>
+    <string name="setting">Setting</string>
+    <string name="source_number">0324</string>
+    <string name="updateGroup">Update Group</string>
 </resources>

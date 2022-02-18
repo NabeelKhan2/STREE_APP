@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_groupListFragment_to_updateGroupFragment"
             app:destination="@id/updateGroupFragment" />
+        <action
+            android:id="@+id/action_groupListFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -34,7 +37,8 @@
     <fragment
         android:id="@+id/addGroupFragment"
         android:name="com.example.stree20.ui.fragments.addandupdategroupfragment.AddGroupFragment"
-        android:label="AddGroupFragment" >
+        android:label="AddGroupFragment"
+        tools:layout="@layout/fragment_add_and_update_base">
         <action
             android:id="@+id/action_addGroupFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
@@ -42,5 +46,10 @@
     <fragment
         android:id="@+id/updateGroupFragment"
         android:name="com.example.stree20.ui.fragments.addandupdategroupfragment.UpdateGroupFragment"
-        android:label="UpdateGroupFragment" />
+        android:label="UpdateGroupFragment"
+        tools:layout="@layout/fragment_add_and_update_base">
+        <argument
+            android:name="streeItem"
+            app:argType="com.example.stree20.data.local.StreeItem" />
+    </fragment>
 </navigation>

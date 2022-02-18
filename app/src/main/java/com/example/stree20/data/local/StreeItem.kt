@@ -10,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class StreeItem(
     val groupName: String,
     val source: Int,
+    val channel: String,
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null
 ):Parcelable
