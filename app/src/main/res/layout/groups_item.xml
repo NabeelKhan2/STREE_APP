@@ -61,19 +61,6 @@
         app:layout_constraintStart_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/ivSms" />
 
-
-    <!--    <com.google.android.material.textview.MaterialTextView-->
-    <!--        android:id="@+id/tvSourceCount"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:textColor="@color/background"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:text="@string/source_number"-->
-    <!--        android:textSize="@dimen/_15ssp"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/tv_sms_source"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/tv_sms_source"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/tv_sms_source"/>-->
-
     <ImageView
         android:id="@+id/ivSms"
         android:layout_width="wrap_content"
@@ -90,6 +77,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.29" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

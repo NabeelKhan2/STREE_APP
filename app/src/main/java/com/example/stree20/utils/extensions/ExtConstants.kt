@@ -17,7 +17,7 @@ fun Context.alert(
 ) {
     MaterialAlertDialogBuilder(this, style)
         .apply {
-            setCancelable(false)
+            setCancelable(true)
             dialogBuilder()
             create()
             show()

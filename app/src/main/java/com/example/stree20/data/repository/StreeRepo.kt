@@ -15,21 +15,26 @@ interface StreeRepo {
     fun observeAllStreeItem(): Flow<List<StreeItem>>
 
 
-    fun getChannel(
+    suspend fun getChannel(
         token: String
     ): Flow<Resource<ChannelResponse>>
 
-    fun postMessage(
+    suspend fun postMessage(
         token: String,
         channel: String,
         text: String
     ): Flow<Resource<MessageResponse>>
 
-    fun getAuth(
+    suspend fun getAuth(
         clientId: String,
         clientSecret: String,
         code: String,
         redirectUri: String
     ): Flow<Resource<AuthResponse>>
+
+    fun saveCode(code: String)
+    fun saveToken(token: String)
+    fun getToken():String?
+    fun getCode():String?
 
 }

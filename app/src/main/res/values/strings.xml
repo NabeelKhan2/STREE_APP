@@ -15,4 +15,21 @@
     <string name="setting">Setting</string>
     <string name="source_number">0324</string>
     <string name="updateGroup">Update Group</string>
+    <string name="authenticated">Already authenticated</string>
+    <string name="already_authenticated">There is no need to setup. We already have your slack credentials.</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="unknown_error">An unknown error occurred.</string>
+    <string name="group_added">Group Added</string>
+    <string name="authentication">Authentication!</string>
+    <string name="integeration_missing">Slack Integration missing Click to setup</string>
+    <string name="setup">Setup</string>
+    <string name="updated_group">Updated Group</string>
+    <string name="fill_out">please fill out the field</string>
+    <string name="successfully_deleted">Successfully deleted item</string>
+    <string name="undo">Undo</string>
+    <string name="ACTION_TELEPHONY">android.provider.Telephony.SMS_RECEIVED</string>
+    <string name="SMS_SERVICE">SMS Service</string>
+    <string name="service_running">Service is running to receive incoming messages!</string>
+    <string name="validate_permission_msg">permission is required go to your settings and allow permission</string>
 </resources>

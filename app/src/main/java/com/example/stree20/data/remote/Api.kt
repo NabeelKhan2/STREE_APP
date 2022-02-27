@@ -21,6 +21,7 @@ interface Api {
         @Header("Authorization") token: String,
         @Query("channel") channel: String,
         @Query("text") text: String
+
     ): Response<MessageResponse>
 
     @POST("/api/oauth.access")

@@ -1,11 +1,8 @@
 package com.example.stree20.ui.fragments.slacksetupfragment
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -29,20 +26,13 @@ class SlackSetupFragment : Fragment(R.layout.fragment_slack_setup) {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<SlackSetupViewModel>()
-    private lateinit var sharePreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSlackSetupBinding.bind(view)
 
-        sharePreferences =
-            requireActivity().getSharedPreferences(Constants.SHARE_PREF_NAME, Context.MODE_PRIVATE)
-        editor = sharePreferences.edit()
-
         openSlackWeb(Constants.URI)
         subscribeToObservers()
-
     }
 
     private fun subscribeToObservers() {
@@ -50,19 +40,16 @@ class SlackSetupFragment : Fragment(R.layout.fragment_slack_setup) {
             viewModel.auth.collect { state ->
                 when (state) {
                     is SlackSetupViewModel.State.Success -> {
-                        editor.apply {
-                            putString(Constants.TOKEN_KEY, state.auth?.access_token!!)
-                            apply()
-                        }
-                        toast("welcome ${state.auth?.team_name}")
-                        Log.e("SlackSetup", "Token ${state.auth?.access_token}")
+                        viewModel.saveToken(state.auth?.access_token!!)
+
+                        toast("welcome ${state.auth.team_name}")
                         findNavController().navigateUp()
                         binding.progressBar.visibility = View.GONE
 
                     }
 
                     is SlackSetupViewModel.State.Error -> {
-                        toast(state.msg ?: "An unknown error occurred.")
+                        toast(state.msg ?: getString(R.string.unknown_error))
                         binding.progressBar.visibility = View.GONE
                     }
 
@@ -80,23 +67,25 @@ class SlackSetupFragment : Fragment(R.layout.fragment_slack_setup) {
     private fun openSlackWeb(uri: String) {
         binding.progressBar.isVisible = true
         binding.webView.apply {
+
             loadUrl(uri)
             settings.javaScriptEnabled = true
+
             webViewClient = object : WebViewClient() {
+
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     binding.progressBar.isVisible = false
                     if (url != null) {
                         if (url.contains("code=")) {
-                            Log.e("SlackSetup", url)
+
                             val substring: String =
                                 url.substring(url.indexOf("code=") + 5, url.indexOf("&"))
-                            Log.e("SlackSetup", substring)
-                            editor.apply {
-                                putString(Constants.CODE_KEY, substring)
-                                apply()
-                            }
+
+                            viewModel.saveCode(substring)
+
                             destroy()
-                            sharePreferences.getString(Constants.CODE_KEY, null)?.let {
+
+                            viewModel.getCode()?.let {
                                 viewModel.getAuth(
                                     Constants.CLIENT_ID,
                                     Constants.CLIENT_SECRET,

@@ -9,16 +9,13 @@ import com.example.stree20.utils.constants.Constants
 import com.example.stree20.utils.helpers.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
-class AddAndUpdateViewModel @Inject constructor(
+class GroupManagerViewModel @Inject constructor(
     private val repository: StreeRepo
 ) : ViewModel() {
 
@@ -28,8 +25,15 @@ class AddAndUpdateViewModel @Inject constructor(
     private val eventChannel = Channel<Event>()
     val eventFLow = eventChannel.receiveAsFlow()
 
+//    val groupName = MutableStateFlow("")
+//    val smsSource = MutableStateFlow("")
+//    val smsChannel = MutableStateFlow("")
+//
+//    val isFormValid = combine(groupName, smsSource, smsChannel) { name, source, channel ->
+//        name.isNotBlank() and source.isNotBlank() and channel.isNotBlank()
+//    }
 
-    fun insertShoppingItemIntoDb(streeItem: StreeItem) = viewModelScope.launch {
+    private fun insertShoppingItemIntoDb(streeItem: StreeItem) = viewModelScope.launch {
         repository.insertStreeItem(streeItem)
     }
 
@@ -52,6 +56,10 @@ class AddAndUpdateViewModel @Inject constructor(
         }
     }
 
+    fun getToken(): String? {
+        return repository.getToken()
+    }
+
     fun insertStreeItem(
         groupName: String,
         smsSource: String,
@@ -72,15 +80,8 @@ class AddAndUpdateViewModel @Inject constructor(
                 return@launch
             }
 
-            val source = try {
-                smsSource.toInt()
-            } catch (e: Exception) {
-                eventChannel.send(Event.Error("Please enter a valid number"))
-                return@launch
-            }
-
             val streeItem =
-                StreeItem(groupName, source, channel)
+                StreeItem(groupName, smsSource, channel)
 
             insertShoppingItemIntoDb(streeItem)
             eventChannel.send(Event.Success(streeItem))

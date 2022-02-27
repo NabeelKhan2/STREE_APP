@@ -51,5 +51,8 @@
         <argument
             android:name="streeItem"
             app:argType="com.example.stree20.data.local.StreeItem" />
+        <action
+            android:id="@+id/action_updateGroupFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
 </navigation>

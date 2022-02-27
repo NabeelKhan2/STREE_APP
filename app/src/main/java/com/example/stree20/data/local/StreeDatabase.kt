@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [StreeItem::class],
-    version = 1
+    version = 2
 )
 abstract class StreeDatabase : RoomDatabase() {
 

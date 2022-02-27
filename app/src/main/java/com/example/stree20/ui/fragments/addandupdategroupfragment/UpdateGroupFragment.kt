@@ -8,7 +8,7 @@ import com.example.stree20.R
 import com.example.stree20.data.local.StreeItem
 import com.example.stree20.utils.extensions.toast
 
-class UpdateGroupFragment : AddAndUpdateBaseFragment() {
+class UpdateGroupFragment : FragmentGroupManager() {
 
     private val args by navArgs<UpdateGroupFragmentArgs>()
 
@@ -19,7 +19,7 @@ class UpdateGroupFragment : AddAndUpdateBaseFragment() {
 
             args.streeItem.run {
                 etGroupName.setText(groupName)
-                etSmsSource.setText(source.toString())
+                etSmsSource.setText(source)
                 spText.setText(channel)
             }
 
@@ -43,17 +43,17 @@ class UpdateGroupFragment : AddAndUpdateBaseFragment() {
                 val updatedItem =
                     StreeItem(
                         groupName,
-                        smsSource.toInt(),
+                        smsSource,
                         channelName,
                         args.streeItem.id
                     )
                 viewModel.updateStreeItem(updatedItem)
 
-                toast("Updated Shopping Item")
+                toast(getString(R.string.updated_group))
                 findNavController().navigateUp()
 
             } else {
-                toast("please fill out the field")
+                toast(getString(R.string.fill_out))
             }
         }
     }

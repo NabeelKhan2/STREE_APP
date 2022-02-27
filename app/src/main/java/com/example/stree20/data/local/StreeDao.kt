@@ -21,6 +21,6 @@ interface StreeDao {
     suspend fun deleteStreeItem(streeItem: StreeItem)
 
     @Query("SELECT * FROM Stree_table")
-    fun observerAllShoppingItems(): Flow<List<StreeItem>>
+    fun observerAllStreeGroup(): Flow<List<StreeItem>>
 
 }

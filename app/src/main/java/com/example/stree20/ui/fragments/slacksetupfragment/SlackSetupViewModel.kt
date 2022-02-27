@@ -26,7 +26,6 @@ class SlackSetupViewModel @Inject constructor(
         code: String,
         redirectUri: String
     ) {
-
         viewModelScope.launch {
             repository.getAuth(clientId, clientSecret, code, redirectUri).collect { response ->
                 _auth.value = State.Loading
@@ -42,6 +41,17 @@ class SlackSetupViewModel @Inject constructor(
         }
     }
 
+    fun saveCode(code: String) {
+        repository.saveCode(code)
+    }
+
+    fun saveToken(token: String) {
+        repository.saveToken(token)
+    }
+
+    fun getCode(): String? {
+        return repository.getCode()
+    }
 
     sealed class State {
         data class Success(val auth: AuthResponse?) : State()

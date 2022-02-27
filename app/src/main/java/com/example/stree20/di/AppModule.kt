@@ -1,11 +1,13 @@
 package com.example.stree20.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.stree20.data.local.StreeDatabase
 import com.example.stree20.data.remote.Api
 import com.example.stree20.data.repository.RepoImplementation
 import com.example.stree20.data.repository.StreeRepo
+import com.example.stree20.utils.constants.Constants
 import com.example.stree20.utils.constants.Constants.BASE_URL
 import com.example.stree20.utils.constants.Constants.DATABASE_NAME
 import com.google.gson.GsonBuilder
@@ -14,6 +16,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,7 +37,7 @@ object AppModule {
         app,
         StreeDatabase::class.java,
         DATABASE_NAME
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
@@ -61,7 +65,6 @@ object AppModule {
                 )
             )
             .build()
-
     }
 
 
@@ -73,9 +76,20 @@ object AppModule {
         return retrofit.create(Api::class.java)
     }
 
+    @Provides
+    fun provideCoroutineScope() = CoroutineScope(Job())
+
     @Singleton
     @Provides
     fun getMyRepository(defaultShoppingRepo: RepoImplementation): StreeRepo =
         defaultShoppingRepo
+
+    @Singleton
+    @Provides
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
+        context.getSharedPreferences(
+            Constants.SHARE_PREF_NAME, Context.MODE_PRIVATE
+        )
+
 
 }
